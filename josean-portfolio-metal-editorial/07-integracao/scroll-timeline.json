@@ -1,0 +1,45 @@
+{
+  "localProgress": [
+    0,
+    1
+  ],
+  "scenes": [
+    {
+      "range": [
+        0,
+        0.2
+      ],
+      "name": "assinatura"
+    },
+    {
+      "range": [
+        0.2,
+        0.42
+      ],
+      "name": "profundidade",
+      "maxOffsetPx": 24
+    },
+    {
+      "range": [
+        0.42,
+        0.62
+      ],
+      "name": "abertura"
+    },
+    {
+      "range": [
+        0.62,
+        0.82
+      ],
+      "name": "enquadramento"
+    },
+    {
+      "range": [
+        0.82,
+        1
+      ],
+      "name": "trabalho"
+    }
+  ],
+  "reducedMotion": "Show final image and content without spatial animation"
+}

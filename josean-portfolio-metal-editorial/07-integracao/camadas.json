@@ -1,0 +1,11 @@
+{
+  "portrait": "04-camadas/retrato-josean-transparente.png",
+  "base": "02-hero/fundo-prata.png",
+  "planes": [
+    "04-camadas/placa-esquerda.svg",
+    "04-camadas/placa-direita.svg"
+  ],
+  "case": "05-projetos/01-automotives-sta.png",
+  "masterBrand": "03-identidade/ja-preto-transparente.png",
+  "note": "Production vector apertures are editorial geometry, not the master logo or pixel-identical recreation of mockup."
+}

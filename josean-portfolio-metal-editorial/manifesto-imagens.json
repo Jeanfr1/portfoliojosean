@@ -1,0 +1,149 @@
+[
+  {
+    "file": "01-direcao/portfolio-visao-geral.png",
+    "width": 729,
+    "height": 2157,
+    "mode": "RGB",
+    "alpha_range": null,
+    "bytes": 2050040,
+    "sha256": "1b1dc347fb48b38d5c58b84d1a49741ae17e7369ab9581b929fe852bb763eba2"
+  },
+  {
+    "file": "01-direcao/storyboard-janela-de-autor.png",
+    "width": 1672,
+    "height": 941,
+    "mode": "RGB",
+    "alpha_range": null,
+    "bytes": 2061679,
+    "sha256": "d91f0bcdf84eca838816e6c37698a8cdbcd76dd45170e684f8dbe6eeebedd9d1"
+  },
+  {
+    "file": "02-hero/fundo-prata.png",
+    "width": 1672,
+    "height": 941,
+    "mode": "RGB",
+    "alpha_range": null,
+    "bytes": 2206530,
+    "sha256": "b668cb06bf4352ea3d2cca26565808d3d9236c5ff8836fd3c8b98bac8c46af24"
+  },
+  {
+    "file": "02-hero/hero-desktop.png",
+    "width": 1672,
+    "height": 941,
+    "mode": "RGB",
+    "alpha_range": null,
+    "bytes": 2354910,
+    "sha256": "4ff1b13a487fbf227d9eb3505a1fa0c12e7789da8515478435e152396a60f2a3"
+  },
+  {
+    "file": "02-hero/hero-mobile.png",
+    "width": 941,
+    "height": 1672,
+    "mode": "RGB",
+    "alpha_range": null,
+    "bytes": 2375515,
+    "sha256": "96aa0b54e55e3c7a95b826137fcb86f793eefece9fd32c6e45daf8df1d2d4127"
+  },
+  {
+    "file": "03-identidade/ja-branco-transparente.png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 229791,
+    "sha256": "327e3e929b7cf3f20fe90aef229f08a9d8efeb9844646c0759c81699aeef1146"
+  },
+  {
+    "file": "03-identidade/ja-preto-transparente.png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 230958,
+    "sha256": "69c35ead841af78dbbf1b2c6dadca115f7eb16b5dd6b43227c736529c454578a"
+  },
+  {
+    "file": "03-identidade/prancha-identidade-ja.png",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_range": null,
+    "bytes": 2656044,
+    "sha256": "261b2c2e164ca8c6bf096b24776126ad41117f863ad3799d91e8444f61095a3e"
+  },
+  {
+    "file": "04-camadas/retrato-josean-transparente.png",
+    "width": 1199,
+    "height": 1312,
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1564703,
+    "sha256": "a929158bbe94ec8b6fbf0ff6cfb90a73daab4cc717015d453eff497a98207b5a"
+  },
+  {
+    "file": "05-projetos/01-automotives-sta.png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "alpha_range": null,
+    "bytes": 2160878,
+    "sha256": "0d4b2efd551eec5b7fb7c8bdbdb749f6418bbc0aebcaaff2b11224481a35903d"
+  },
+  {
+    "file": "05-projetos/02-isola.png",
+    "width": 1086,
+    "height": 1448,
+    "mode": "RGB",
+    "alpha_range": null,
+    "bytes": 2090854,
+    "sha256": "8db4125a56e8763788d0ced67030f2caf1e360857c5296326d6b46935b69d57e"
+  },
+  {
+    "file": "05-projetos/03-legend-nails.png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "alpha_range": null,
+    "bytes": 2143046,
+    "sha256": "14bdff73f0ea765e423a706f9739857d76484f4a250e0980dadce6074352cf52"
+  },
+  {
+    "file": "05-projetos/04-orhan-barber.png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "alpha_range": null,
+    "bytes": 2198839,
+    "sha256": "6330aa1173745116c9f03f441726168b3b1da7cdcfd75e0b9d6634ef703e05d1"
+  },
+  {
+    "file": "05-projetos/05-bayro-cut.png",
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "alpha_range": null,
+    "bytes": 2045539,
+    "sha256": "2b4d48811e0d3353e4821e7ec76368c8753994d33a8799ae49843abb986b1719"
+  },
+  {
+    "file": "05-projetos/06-mm-cleaning.png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      255
+    ],
+    "bytes": 1663584,
+    "sha256": "3c3cb509b5fd340bab1530ec0c4b0d26c774128b218c1c48ce2c15b6554b35c3"
+  }
+]

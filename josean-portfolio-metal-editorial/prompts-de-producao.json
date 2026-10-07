@@ -1,0 +1,52 @@
+{
+  "generation_mode": "built-in imagegen",
+  "identity_reference": "fotoperfilgithub(1).png",
+  "composition_reference": "Screenshot 2026-10-07 at 00.07.26.png",
+  "assets": [
+    {
+      "file": "02-hero/hero-desktop.png",
+      "transparent_background": false,
+      "prompt": "Use case: ui-mockup. Create a genuinely sophisticated personal portfolio website desktop hero artboard, landscape 16:9. Image1 is a reference for oversized typographic apertures revealing natural portrait through thick silver paper/aluminium layers; image2 is Josean's identity photo. New identity JOSEAN ARAUJO. Preserve same man: short dark hair, trimmed beard, medium skin, natural age/face. Art direction: Swiss editorial layout, luxury architecture publication, tactile satin metal typography, NOT sci-fi. Left two-thirds features giant architectural JA letter apertures carved from matte silver plate, portrait of Josean with black structured jacket behind the apertures, face visible through counterforms; narrow parallel graphite shadow layers offset in depth like attached reference. Human photographic skin texture, restrained black and silver. Right one-third clean typographic content on pale cool gray: JOSEAN ARAUJO, headline 'Ideias claras. Experiências marcantes.', small label 'DESIGN / DESENVOLVIMENTO / IMPLEMENTAÇÃO', button 'Ver projetos' as small black rectangle, understated link 'Conversar'. Top nav minimal small JA at left and Projetos / Sobre / Contato right, 64px outer margins, razor thin rules, beautiful editorial breathing space. Lower edge discreet label 'PORTFOLIO SELECIONADO'. Palette graphite #18191B, brushed silver #B9BBBE, paper #E6E5E1, black. No blue, neon, HUD, glass cards, halos, particles, robot, glowing circuits, chrome blob, fake stats, stars, claims of seniority, availability or awards. Reference is composition inspiration only, do not reproduce female face, red hair, HU letters, barcodes, dates or watermark. Avoid overcomplicated 3D fantasy: restrained photographic material study with purposeful UI hierarchy. No browser frame."
+    },
+    {
+      "file": "04-camadas/retrato-josean-transparente.png",
+      "transparent_background": true,
+      "prompt": "Use case: identity-preserve. Image1 is the personal photo of Josean. Create same identifiable adult man with short dark hair and neatly trimmed beard, preserve eyes, nose, facial shape, skin tone and age. Premium editorial photographic waist-up portrait, quiet confident expression, frontal with subtle 10 degree head turn, black structured tailored jacket and charcoal crew-neck, no bow tie, hands natural outside crop. Soft large studio light, real skin pores, mild film grain, natural eye reflections, neutral silver-gray tonality; keep skin subtly natural not plastic or entirely monochrome. TRUE transparent alpha background, no frame, app UI, floor, halo or backdrop. Entire head and shoulders safely inside canvas. High-end author portrait for editorial design portfolio, not AI fashion model. No blue rim light, glows, shiny futuristic clothes or exaggerated symmetry."
+    },
+    {
+      "file": "03-identidade/ja-preto-transparente.png",
+      "transparent_background": true,
+      "prompt": "Use case: logo-brand. Design ONE original premium geometric typographic monogram JA for JOSEAN ARAUJO, flat near-black ink #18191B on TRUE transparent alpha background. J left clearly readable with a generous rounded lower hook; A right clearly readable with disciplined diagonal legs and a small horizontal crossbar. The J and A share a subtle common vertical/cut junction but remain immediately recognizable as JA. Inspired by expertly drawn Swiss modernist custom letterforms and architectural negative space; controlled optical weight, balanced spacing, one distinctive 12-degree angled aperture detail, no decorative crown, star, shield, laurels, wings, signature script, stock-logo arrow, overlapping chaos or random slash. Crisp solid clean silhouette, vector-friendly graphic, square canvas, generous empty margins. No name text, mockup, 3D, metallic gradient, embossing, shadows or lighting. This is master identity mark, modest and expensive through craft, usable at 24px. Do not turn A into R or J into I."
+    },
+    {
+      "file": "03-identidade/ja-branco-transparente.png",
+      "transparent_background": true,
+      "prompt": "Use case: precise-object-edit. Recolor ONLY the attached master JA monogram from dark to pure white #FFFFFF. Preserve exactly the silhouette, curve of J hook, shared junction, diagonal leg/counterform of A, spacing, proportions, placement and transparent margins. TRUE transparent alpha background. No change to design, no extra text or logo, no shadows, reflections, lighting, gradient, embossing, texture or mockup. This is exact inverse color asset for use on graphite."
+    },
+    {
+      "file": "03-identidade/prancha-identidade-ja.png",
+      "transparent_background": false,
+      "prompt": "Use case: logo-brand. Make a restrained high-end brand identity presentation for Josean Araujo. Use exact JA master monogram silhouette from first image, not any other font JA. Style second supplied metallic editorial hero: natural satin silver, paper gray, graphite, elegant serif wordmark JOSEAN ARAUJO and small sans DESIGN / DESENVOLVIMENTO / IMPLEMENTAÇÃO. Landscape 3:2 sophisticated grid: upper left large flat black master mark on paper; upper right reverse white mark on graphite, same geometry; lower left editorial wordmark and neat gray palette chips; lower right two realistic simple applications, a thick uncoated graphite business card with small white JA and name, and satin silver typographic cover with architectural JA apertures. No fabricated contact data, QR, fake address or premium price, no mockup devices. Typography clear, negative space generous, thin divider rules, tiny labels MARCA / CONTRASTE / TIPOGRAFIA / MATERIAL. Avoid shiny chrome, glowing circuits, tacky embossed plaques, extra logo options, variants with changing glyphs or stars. One consistent mark, premium through optical craft."
+    },
+    {
+      "file": "02-hero/fundo-prata.png",
+      "transparent_background": false,
+      "prompt": "Use case: product-mockup. Create a clean background production plate, wide landscape 16:9, for a satin-silver editorial portfolio. Soft light paper-gray #E6E5E1 with subtle fine uncoated paper/very gentle satin aluminum microtexture, broad barely visible tonal light from upper left. Flat front-facing surface, no objects, typography, letters, lines, logos, vignette spotlight, people or heavy shadows. Quiet uniform field suitable behind live HTML text and independent portrait layers. No shiny chrome, wave sculpture, sci-fi, blue or glow. Refined realistic tactile material, minimal barely perceptible grain, avoid noisy texture."
+    },
+    {
+      "file": "02-hero/hero-mobile.png",
+      "transparent_background": false,
+      "prompt": "Use case: ui-mockup. Recompose the first attached metallic editorial Josean Araujo hero as tall 9:16 MOBILE website artboard. Preserve natural same man's face, satin silver JA letter apertures, graphite layered shadows and restrained editorial luxury. Top small exact JA monogram from second attached master, minimal Projetos / Contato links. Art occupies upper 55%; keep one eye and recognizable nose/mouth visible through monumental JA aperture, no neck cut or tiny person. Below art clean paper-gray panel with refined serif 'JOSEAN ARAUJO', 'Ideias claras. Experiências marcantes.', small sans 'DESIGN / DESENVOLVIMENTO / IMPLEMENTAÇÃO', black button Ver projetos and understated Conversar link. Large comfortable type, excellent breathing room, no desktop sidebar squeezed down. No blue, neon, particles, fake metrics, awards, availability, device frame or browser. Master mark exact geometry, not generic serif JA at top."
+    },
+    {
+      "file": "01-direcao/portfolio-visao-geral.png",
+      "transparent_background": false,
+      "prompt": "Use case: precise-object-edit. Edit ONLY these items in first supplied full-page metallic editorial portfolio, preserve layout, portrait, paper/silver textures, serif headings, entire section structure, existing automotive/Isola/Orhan/other concept images exactly. 1) In Projetos no LinkedIn section remove the laptop DevConnect mockup and the mother/baby photo entirely. Replace both image regions with clean paper-gray negative space and thin rules, making TWO SIMPLE TEXT INDEX ROWS 'DevConnect' and 'MamaCare', each small 'Projeto no LinkedIn' and 'Ver no LinkedIn'. No screenshot or decorative illustration of those products; their visuals have not been supplied. 2) Replace the tiny top-left and footer generic typed JA signature with exact black geometric monogram from second reference, small appropriate size, same silhouette. 3) Under TRABALHO QUE MERECE ATENÇÃO use short introduction 'Estudos de direção visual, interfaces e movimento para diferentes contextos de negócio.' Keep all Estudo de conceito tags. Nothing else changes. Full complete portrait canvas preserved. No new features, fake metrics, availability or results."
+    },
+    {
+      "file": "01-direcao/storyboard-janela-de-autor.png",
+      "transparent_background": false,
+      "prompt": "Use case: precise-object-edit. Keep first supplied storyboard panels 01,02,03, headings, same Josean portrait, materials and framing EXACTLY. Change ONLY the website preview inside panel 04 TRABALHO: remove fictional VORANT car-manufacturer design and replace it with the actual supplied Automotives STA design from second reference, focusing top heroic silver car/wireframe crop with original STA black/red typography, not a new automotive brand. Label below 'Automotives STA' and small 'Estudo de conceito'. Window remains aligned to same framing area with portrait faded out. Do not alter other panels or labels, no fake projects or images. Original project keeps black/red identity inside silver editorial frame."
+    }
+  ]
+}
