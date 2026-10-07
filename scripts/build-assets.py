@@ -91,6 +91,17 @@ def projects() -> None:
         hero = src if hero_h is None else src.crop((0, 0, src.width, hero_h))
         save_webp(fit_width(hero, 1024), f"{slug}-hero.webp", 82)
         save_webp(fit_width(hero, 480), f"{slug}-thumb.webp", 80)
+        og_card(hero, slug)
+
+
+def og_card(hero: Image.Image, slug: str) -> None:
+    """1200 x 630 JPEG for link previews (LinkedIn does not read WebP reliably),
+    covering the frame from the top of the concept's first screen."""
+    img = hero.convert("RGB")
+    scale = max(1200 / img.width, 630 / img.height)
+    img = img.resize((round(img.width * scale), round(img.height * scale)), Image.LANCZOS)
+    left = (img.width - 1200) // 2
+    img.crop((left, 0, left + 1200, 630)).save(OUT / f"{slug}-og.jpg", quality=84, optimize=True, progressive=True)
 
 
 def grain() -> None:

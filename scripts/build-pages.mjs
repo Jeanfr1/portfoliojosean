@@ -4,7 +4,7 @@
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { LINKEDIN, projects } from '../src/data/projects.js';
+import { LINKEDIN, SITE_URL, projects } from '../src/data/projects.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -134,7 +134,11 @@ function casePage(p, next) {
   <meta property="og:type" content="article">
   <meta property="og:title" content="${esc(p.name)} / Concept study">
   <meta property="og:description" content="${esc(p.summary)}">
-  <meta property="og:image" content="/img/${p.slug}-hero.webp">
+  <link rel="canonical" href="${SITE_URL}/work/${p.slug}/">
+  <meta property="og:url" content="${SITE_URL}/work/${p.slug}/">
+  <meta property="og:image" content="${SITE_URL}/img/${p.slug}-og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <script>document.documentElement.classList.add('js')</script>

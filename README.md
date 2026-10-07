@@ -1,10 +1,12 @@
 <div align="center">
 
-<img src=".github/assets/banner.jpg" alt="Josean Araujo: Clear ideas. Memorable experiences. The monumental letters J and A cut from a satin silver plate reveal Josean's portrait." width="100%" />
+<a href="https://josean-araujo-portfolio.vercel.app"><img src=".github/assets/banner.jpg" alt="Josean Araujo: Clear ideas. Memorable experiences. The monumental letters J and A cut from a satin silver plate reveal Josean's portrait." width="100%" /></a>
 
 <h3>An editorial portfolio where the JA monogram becomes an author's window: layered satin silver letters that open on scroll to reveal the author.</h3>
 
 <p>
+  <a href="https://josean-araujo-portfolio.vercel.app"><strong>🌐 Live site</strong></a>
+  &nbsp;·&nbsp;
   <a href="#hero-animation"><strong>🎬 How the hero works</strong></a>
   &nbsp;·&nbsp;
   <a href="#case-studies"><strong>🧭 Case studies</strong></a>
@@ -13,7 +15,7 @@
 </p>
 
 <p>
-  <img src="https://img.shields.io/badge/Vercel-Ready-18191B?style=for-the-badge&logo=vercel&logoColor=white" alt="Ready for Vercel" />
+  <a href="https://josean-araujo-portfolio.vercel.app"><img src="https://img.shields.io/badge/Vercel-Live-18191B?style=for-the-badge&logo=vercel&logoColor=white" alt="Live on Vercel" /></a>
   <img src="https://img.shields.io/badge/Vite-6-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite 6" />
   <img src="https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="Vanilla JavaScript" />
   <img src="https://img.shields.io/badge/Works_without-JavaScript-B9BBBE?style=for-the-badge" alt="Works without JavaScript" />
@@ -42,7 +44,7 @@ The first screen is a signature. Monumental **J** and **A** letters, cut in laye
 ## 🎬 The hero animation
 
 <div align="center">
-  <img src=".github/assets/hero-scroll.gif" alt="Scrolling through the hero: the layered J and A planes set back, then slide apart to reveal Josean's portrait between them" width="100%" />
+  <a href="https://josean-araujo-portfolio.vercel.app"><img src=".github/assets/hero-scroll.gif" alt="Scrolling through the hero: the layered J and A planes set back, then slide apart to reveal Josean's portrait between them" width="100%" /></a>
   <sub>Scroll-scrubbed · captured at 1440 × 900 from the production build</sub>
 </div>
 
@@ -148,7 +150,7 @@ Each concept has its own static page at `/work/<slug>/`, in the order the kit as
 - **No animation library**: the sequence is a handful of transforms driven by scroll position, so it stays exact, seek-safe and easy to read
 - **Self-hosted Bodoni Moda and Inter**: no third-party font requests; only the Latin subsets in use are downloaded
 - **Pillow for derivatives**: crops and WebP files are reproducible from the kit with one command
-- **Vercel**: static output, ready to connect to this repository
+- **Vercel**: static output; every push to `main` deploys automatically
 
 <br />
 
@@ -235,7 +237,9 @@ portfoliojosean/
 
 ## 🚀 Deployment
 
-Configured for **Vercel** (`vercel.json`); the kit is excluded from uploads by `.vercelignore`. It has **not been published yet**: the kit asks to validate the portrait, copy, links and case labels first (see the checklist below). Once approved, import this repository in Vercel and every push to `main` ships to production.
+Hosted on **Vercel** and connected to this repository: every push to `main` ships to production. The kit is excluded from uploads by `.vercelignore`, so its source files are never public.
+
+**Live site:** [josean-araujo-portfolio.vercel.app](https://josean-araujo-portfolio.vercel.app)
 
 | Setting          | Value           |
 | :--------------- | :-------------- |
@@ -255,7 +259,7 @@ Items to validate before publishing (`04-producao.md`, `03-arquitetura-e-copy.md
 - [ ] Public links for the six concept studies (the `prototype` field in `src/data/projects.js` switches on *Implementation*)
 - [ ] Real screens and links for **DevConnect** and **MamaCare**, to give them their own cases
 - [ ] Check the LinkedIn link and every *Concept study* label
-- [ ] Custom domain (then make `og:image` absolute and add `canonical`)
+- [ ] Custom domain (then update `SITE_URL` in `src/data/projects.js` and the canonical / Open Graph URLs in `index.html`)
 - [ ] For print: redraw the approved JA monogram as vector curves (the PNGs are not vectors)
 
 <br />

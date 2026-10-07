@@ -4,6 +4,8 @@
 // TODO(josean): add `prototype` URLs (live builds) once you confirm they can be public.
 
 export const LINKEDIN = 'https://www.linkedin.com/in/josean-araujo-3ba63b17b/';
+// Production URL (Vercel). Change here when a custom domain is added.
+export const SITE_URL = 'https://josean-araujo-portfolio.vercel.app';
 
 export const projects = [
   {
