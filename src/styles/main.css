@@ -229,103 +229,139 @@ a {
   text-underline-offset: 6px;
 }
 
-/* ---------- Hero (mobile first: art above, text below) ---------- */
+/* ---------- Hero: the author window ----------
+   Planes traced from 02-hero/hero-desktop.png (src/data/hero-scene.js),
+   rendered by scripts/build-hero.mjs. The page and the front plate share one
+   satin silver plate: tone sampled from the art, darker on the left, with
+   paper grain. Mobile first: art above, text below. */
+
+.hero {
+  --plate-grain: url('/img/grain.png');
+  --plate-tone: linear-gradient(90deg, #a8a9a8 0%, #b5b6b5 14%, #c3c4c3 32%, #cccccb 46%, #d3d3d2 62%, #d8d8d7 78%, #dbdbda 100%);
+  /* Two layers: keep background-size / -position lists at four entries. */
+  --plate-light:
+    radial-gradient(70% 60% at 8% 0%, rgb(255 255 255 / 0.1), transparent 70%),
+    radial-gradient(90% 75% at 0% 100%, rgb(0 0 0 / 0.1), transparent 72%);
+  --hero-muted: #46484c;
+}
 
 .hero__stage {
+  position: relative;
+  container-type: inline-size;
+  background-color: #c8c8c7;
+  background-image: var(--plate-grain), var(--plate-tone);
+  background-size: 200px 200px, 100% 100%;
+}
+
+.hero .masthead {
+  position: relative;
+  z-index: 3;
   padding-inline: var(--margin);
-  background: var(--paper) url('/img/silver-900.webp') center / cover no-repeat;
 }
 
 .hero__art {
-  margin-top: 4px;
-}
-
-.art {
   position: relative;
   width: 100%;
-  aspect-ratio: 1040 / 960;
+  aspect-ratio: 1112 / 941;
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
   isolation: isolate;
 }
 
-.art > * {
+.scene > * {
   position: absolute;
+}
+
+.scene__backdrop {
   inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.art__backdrop {
   background:
-    radial-gradient(70% 60% at 48% 38%, rgb(255 255 255 / 0.07), transparent 70%),
-    linear-gradient(100deg, #151618 0%, #2c2d30 38%, #222326 62%, #121315 100%);
+    url('/img/grain.png') 0 0 / 200px 200px,
+    radial-gradient(34% 30% at 46% 30%, rgb(98 99 99 / 0.55), transparent 72%),
+    linear-gradient(180deg, #0b0b0b 0%, #232424 28%, #353636 55%, #272828 100%);
 }
 
-/* One portrait for every stage (02-roteiro-de-movimento.md). Contained in the
-   1040 x 960 art and offset so the J opening shows one eye, never both hidden. */
-.art__portrait {
-  object-fit: contain;
-  object-position: 50% 100%;
-  translate: -14.5% 0;
+/* The traced artboard (1112 x 941): portrait and planes, anchored at the top. */
+.scene__board {
+  inset: 0;
+}
+
+/* One portrait for every scene; positioned by the generator. */
+.scene__portrait {
+  position: absolute;
+  height: auto;
+  max-width: none;
   animation: portrait-in 0.4s var(--ease) backwards;
 }
 
-/* Shadow planes: copies of each plate, set back in depth. */
-.shade {
-  --d: 6px;
-  translate: var(--d) calc(var(--d) * 0.4);
-  fill: #a4a6a9;
-}
-
-.shade--deep {
-  --d: 12px;
-  fill: #2a2b2e;
-}
-
-.plate {
-  filter: drop-shadow(4px 3px 3px rgb(12 13 14 / 0.38));
-}
-
-/* Each sheet overruns the art frame by 2 px (clipped by it), so the dark
-   recess never bleeds through an anti-aliased outer edge. */
-.plate__surface {
-  position: absolute;
-  inset: -2px;
-  background-color: #deddda;
-  background-image: url('/img/silver-1672.webp');
-  background-repeat: no-repeat;
-  background-size: var(--bg-w, cover) var(--bg-h, auto);
-  background-position: calc(var(--bg-x, 0px) + 2px) calc(var(--bg-y, 0px) + 2px);
-  -webkit-mask: url('/img/plate-j.svg') 0 0 / 100% 100% no-repeat;
-  mask: url('/img/plate-j.svg') 0 0 / 100% 100% no-repeat;
-}
-
-/* The J sheet runs 2 px under the A sheet so the two meet without a hairline. */
-.plate--j .plate__surface {
-  right: -4px;
-}
-
-.plate--a .plate__surface {
-  -webkit-mask-image: url('/img/plate-a.svg');
-  mask-image: url('/img/plate-a.svg');
-}
-
-.plate__edge {
+.scene__inner,
+.scene__edges {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   overflow: visible;
+}
+
+.scene__grain {
+  opacity: 0.6;
+}
+
+.scene__bevel {
   fill: none;
+  stroke: rgb(255 255 255 / 0.55);
+  stroke-width: 1.1;
 }
 
-.plate__bevel {
+.scene__front,
+.scene__shadow {
+  inset: 0;
+}
+
+/* The front plate casts a short shadow into the openings. */
+.scene__shadow {
+  filter: drop-shadow(-2px 10px 9px rgb(0 0 0 / 0.5)) drop-shadow(0 24px 30px rgb(0 0 0 / 0.26));
+}
+
+/* Overruns the frame by 2 px (clipped), so no anti-aliased outer edge shows. */
+.scene__plate {
+  position: absolute;
+  inset: -2px;
+  background-color: #c8c8c7;
+  background-image: var(--plate-grain), var(--plate-tone);
+  background-size: 200px 200px, 100cqw 100%;
+  background-position: 2px 2px, 2px 0;
+  -webkit-mask: url('/img/hero/front-j.svg') 0 0 / 100% 100% no-repeat;
+  mask: url('/img/hero/front-j.svg') 0 0 / 100% 100% no-repeat;
+}
+
+.scene__front--a .scene__plate,
+.scene__shadow--a .scene__plate {
+  -webkit-mask-image: url('/img/hero/front-a.svg');
+  mask-image: url('/img/hero/front-a.svg');
+}
+
+/* Cut edges catch the light. */
+.scene__edge {
+  fill: none;
+  stroke: rgb(255 255 255 / 0.78);
+  stroke-width: 1.4;
+}
+
+/* The seam catches light only once the halves part (--seam set on scroll). */
+.scene__seam {
+  fill: none;
   stroke: rgb(255 255 255 / 0.7);
-  stroke-width: 1.6;
+  stroke-width: 1.4;
+  opacity: var(--seam, 0);
 }
 
-/* One light change runs along one edge and stops (0.70-1.40 s). */
-.plate__sweep {
+/* One light change runs along the J and stops (0.70-1.40 s). */
+.scene__sweep {
+  fill: none;
   stroke: #fff;
   stroke-width: 3;
   stroke-linecap: round;
@@ -334,12 +370,8 @@ a {
   opacity: 0;
 }
 
-.art__window {
-  display: none;
-}
-
 .hero__intro {
-  padding-block: 36px 56px;
+  padding: 32px var(--margin) 56px;
 }
 
 .hero__name {
@@ -371,14 +403,14 @@ a {
   font: 500 0.75rem/1.6 var(--sans);
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--muted);
+  color: var(--hero-muted);
 }
 
 .hero__lead {
   max-width: 30em;
   margin-top: 16px;
   font-size: 1.0625rem;
-  color: var(--muted);
+  color: var(--hero-muted);
 }
 
 .hero__actions {
@@ -387,48 +419,6 @@ a {
   align-items: center;
   gap: 12px 28px;
   margin-top: 28px;
-}
-
-/* Mobile: the project window enters right after the introduction. */
-.hero__case {
-  position: relative;
-  display: block;
-  margin-top: 48px;
-  overflow: hidden;
-  background: #0d0d0e;
-  color: var(--surface);
-  text-decoration: none;
-}
-
-.hero__case img {
-  width: 100%;
-  height: auto;
-  transition: transform 0.45s var(--ease);
-}
-
-.hero__case:hover img {
-  transform: scale(0.97);
-}
-
-.hero__case-label,
-.art__window-label {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 13px 16px;
-  background: var(--graphite);
-  font: 500 0.75rem/1.3 var(--sans);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.hero__case-label span,
-.art__window-label span {
-  color: var(--muted-dark);
-}
-
-.hero__case:focus-visible {
-  outline-offset: 6px;
 }
 
 .hero__foot {
@@ -443,7 +433,7 @@ a {
 
 @keyframes recede {
   from {
-    translate: 0 0;
+    translate: 10px 0;
   }
 }
 
@@ -462,80 +452,114 @@ a {
   }
 }
 
-/* ---------- Hero, desktop: art on 8 columns, presentation on 4 ---------- */
+/* ---------- Hero, desktop: the art from the left edge, text on the right ---------- */
 
 @media (min-width: 1024px) {
   .hero__stage {
-    display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-rows: auto minmax(0, 1fr);
-    column-gap: var(--gutter);
+    --scene-w: min(100cqh * 1112 / 941, 68cqw);
+    --scene-h: calc(var(--scene-w) * 941 / 1112);
     height: 100vh;
     height: 100svh;
     min-height: 640px;
-    padding: 0 max(var(--margin), calc((100% - 1440px) / 2 + var(--margin))) 40px;
-    background-image: url('/img/silver-1672.webp');
-  }
-
-  .masthead {
-    grid-column: 1 / -1;
-    min-height: 96px;
-  }
-
-  .hero__art {
     container-type: size;
-    grid-column: 1 / span 8;
-    grid-row: 2;
-    display: flex;
-    align-items: flex-end;
+    background-image: var(--plate-grain), var(--plate-light), var(--plate-tone);
+    background-size: 200px 200px, 100% 100%, 100% 100%, 100% 100%;
+  }
+
+  /* The masthead rule runs on the line where the openings begin. */
+  .hero .masthead {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: max(56px, calc(var(--scene-h) * 0.0893));
     min-height: 0;
-    margin: 0;
   }
 
-  .art {
-    width: min(100cqw, 100cqh * 1040 / 960);
+  /* The scene runs to the bottom of the screen; the traced artboard keeps its
+     ratio at the top and the plates continue below it, so the opening is
+     always full height. */
+  .hero__art {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: var(--scene-w);
+    height: 100%;
+    aspect-ratio: auto;
   }
 
-  .shade {
+  .scene__board {
+    inset: 0 0 auto;
+    height: var(--scene-h);
+  }
+
+  .scene__edges {
+    inset: 0 0 auto;
+    height: var(--scene-h);
+  }
+
+  .scene__plate {
+    background-image: var(--plate-grain), var(--plate-light), var(--plate-tone);
+    background-size: 200px 200px, 100cqw 100cqh, 100cqw 100cqh, 100cqw 100cqh;
+    background-position: 2px 2px, 2px 2px, 2px 2px, 2px 2px;
+    -webkit-mask-image: url('/img/hero/front-j.svg'), linear-gradient(90deg, #000 var(--seam-j), transparent var(--seam-j));
+    mask-image: url('/img/hero/front-j.svg'), linear-gradient(90deg, #000 var(--seam-j), transparent var(--seam-j));
+    -webkit-mask-size: 100% auto, 100% calc(100% - var(--scene-h));
+    mask-size: 100% auto, 100% calc(100% - var(--scene-h));
+    -webkit-mask-position: 0 0, 0 100%;
+    mask-position: 0 0, 0 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+
+  .scene__front--a .scene__plate,
+  .scene__shadow--a .scene__plate {
+    -webkit-mask-image: url('/img/hero/front-a.svg'), linear-gradient(90deg, transparent var(--seam-a), #000 var(--seam-a));
+    mask-image: url('/img/hero/front-a.svg'), linear-gradient(90deg, transparent var(--seam-a), #000 var(--seam-a));
+  }
+
+  .plane--graphite {
     animation: recede 0.7s var(--ease) 0.2s backwards;
   }
 
-  .plate__sweep {
+  .scene__sweep {
     animation: sweep 0.7s var(--ease) 0.7s both;
   }
 
   .hero__intro {
-    position: relative;
-    grid-column: 9 / -1;
-    grid-row: 2;
+    position: absolute;
+    left: var(--scene-w);
+    right: 0;
+    --col-pad: clamp(24px, 2.8vw, 44px);
+    --col-inner: calc(100cqw - var(--scene-w) - var(--col-pad) - var(--margin));
+    top: calc(var(--scene-h) * 0.098);
+    bottom: 32px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 0 56px clamp(24px, 2.8vw, 44px);
+    padding: 0 var(--margin) 56px var(--col-pad);
     border-left: 1px solid rgb(24 25 27 / 0.45);
   }
 
+  /* As large as the art shows them, bounded by the column's inner width
+     (ARAUJO ~4.1 em, "experiences." ~5.7 em) and by the screen height. */
   .hero__name {
-    font-size: clamp(3rem, 5.1vw, 5.25rem);
+    font-size: min(6.4cqw, 10.2cqh, var(--col-inner) / 4.1);
   }
 
   .hero__title {
     max-width: 11ch;
-    font-size: clamp(2.125rem, 3.5vw, 3.6rem);
+    font-size: min(4.1cqw, 6.6cqh, var(--col-inner) / 5.7);
   }
 
   .hero__rule {
-    margin-block: clamp(16px, 2.2vh, 28px);
-  }
-
-  .hero__case {
-    display: none;
+    margin-block: clamp(14px, 2vh, 28px);
   }
 
   .hero__foot {
     position: absolute;
     left: clamp(24px, 2.8vw, 44px);
-    right: 0;
+    right: var(--margin);
     bottom: 0;
     display: flex;
     align-items: center;
@@ -564,53 +588,14 @@ a {
     top: 0;
   }
 
-  .js .art__window {
-    inset: 8%;
-    width: auto;
-    height: auto;
-    display: block;
-    opacity: 0;
-    transform-origin: 50% 50%;
-    pointer-events: none;
-    color: var(--surface);
-    text-decoration: none;
+  .js [data-layer],
+  .js .scene__portrait {
+    will-change: transform;
   }
 
-  .art__window.is-live {
-    pointer-events: auto;
-  }
-
-  .art__window-mask {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    box-shadow: inset 0 0 0 1px rgb(244 243 239 / 0.85);
-  }
-
-  .art__window-mask img {
-    flex: 1 1 0;
-    height: 0;
-    min-height: 0;
-    width: 100%;
-    object-fit: cover;
-    object-position: 50% 0;
-    opacity: 0;
-  }
-
-  .art__window-label {
-    opacity: 0;
-  }
-
-  .art__window:focus-visible {
-    outline-color: var(--surface);
-    outline-offset: -6px;
-  }
-
-  .intro-done .art__portrait,
-  .intro-done .shade,
-  .intro-done .plate__sweep {
+  .intro-done .scene__portrait,
+  .intro-done .plane--graphite,
+  .intro-done .scene__sweep {
     animation: none;
   }
 }
@@ -1539,16 +1524,6 @@ a {
 
   .js [data-divider].is-in {
     transform: none;
-  }
-
-  /* Mobile: short opacity entrance for the project window. */
-  .js .hero__case {
-    opacity: 0;
-    transition: opacity 0.5s var(--ease);
-  }
-
-  .js .hero__case.is-in {
-    opacity: 1;
   }
 }
 

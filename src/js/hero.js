@@ -1,7 +1,9 @@
-// Author window: the JA plates part, open, leave through the edges and hand the
-// same frame to the first project (02-roteiro-de-movimento.md). Desktop only;
-// mobile and reduced motion keep the static composition.
+// Author window: the JA planes set back, then the J and A halves open
+// sideways in depth until the portrait stands between them (storyboard
+// panels 01-03). Desktop only; mobile and reduced motion keep the resting
+// composition, which is plain HTML and shows without JavaScript.
 import { MOTION, SCENES } from '../data/motion.js';
+import { SCENE } from '../data/hero-scene.js';
 
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const smooth = ([a, b], p) => {
@@ -9,26 +11,34 @@ const smooth = ([a, b], p) => {
   return t * t * (3 - 2 * t);
 };
 
-// Plate travel as a share of the art width, per scene. At rest after
-// "framing" the J and A still show at the edges, as in storyboard panel 04.
-const OPEN_TRAVEL = 0.16;
-const FRAME_TRAVEL = 0.16;
-const PORTRAIT_OPEN_SHIFT = 0.04;
-const BG = { width: 1672, height: 941 }; // 02-hero/fundo-prata.png
+// Travel of each half at full opening, in scene units (1112 wide): the J
+// moves left, the A slides under the presentation column, leaving the head
+// and shoulders clear in between (storyboard panel 03).
+const OPEN = { j: -360, a: 300 };
+// The J's top opening starts here; it must stop short of the JA signature in
+// the masthead, which always sits on the solid plate (identity rule).
+const J_OPENING_LEFT = 398;
+const MARK_CLEARANCE_PX = 20;
+// Planes behind the front plate travel a little less: parallax between layers.
+const INNER_RATIO = 0.94;
+// The portrait drifts toward the centre of the opening, never resized.
+const PORTRAIT_DRIFT = 45;
 
 export function initHero() {
   const hero = document.querySelector('[data-hero]');
   if (!hero) return;
 
   const stage = hero.querySelector('[data-stage]');
-  const art = hero.querySelector('[data-art]');
-  const portrait = art.querySelector('[data-portrait]');
-  const plates = [...art.querySelectorAll('[data-plate]')];
-  const shades = [...art.querySelectorAll('[data-shade]')];
-  const win = art.querySelector('[data-window]');
-  const winMask = art.querySelector('[data-window-mask]');
-  const winImage = art.querySelector('[data-window-image]');
-  const winLabel = art.querySelector('[data-window-label]');
+  const scene = hero.querySelector('[data-scene]');
+  const portrait = scene.querySelector('[data-portrait]');
+  const mark = hero.querySelector('.masthead__mark');
+  // A front half is two elements (its shadow and its plate) moving together.
+  const layers = {
+    frontJ: [...scene.querySelectorAll('[data-layer="front-j"]')],
+    frontA: [...scene.querySelectorAll('[data-layer="front-a"]')],
+    innerJ: [...scene.querySelectorAll('[data-layer="inner-j"]')],
+    innerA: [...scene.querySelectorAll('[data-layer="inner-a"]')],
+  };
 
   const desktop = matchMedia('(min-width: 1024px)');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
@@ -37,22 +47,8 @@ export function initHero() {
   let inView = true;
   let queued = false;
   let introOver = false;
-  let width = art.clientWidth;
-
-  // The plates carry the same silver plate as the page, aligned to the stage,
-  // so at rest the cut-outs read as one continuous sheet.
-  function alignSurface() {
-    const s = stage.getBoundingClientRect();
-    const a = art.getBoundingClientRect();
-    const scale = Math.max(s.width / BG.width, s.height / BG.height);
-    const w = BG.width * scale;
-    const h = BG.height * scale;
-    art.style.setProperty('--bg-w', `${w}px`);
-    art.style.setProperty('--bg-h', `${h}px`);
-    art.style.setProperty('--bg-x', `${(s.width - w) / 2 - (a.left - s.left)}px`);
-    art.style.setProperty('--bg-y', `${(s.height - h) / 2 - (a.top - s.top)}px`);
-    width = art.clientWidth;
-  }
+  let unit = scene.clientWidth / SCENE.width;
+  let openJ = OPEN.j;
 
   function progress() {
     const track = hero.offsetHeight - stage.offsetHeight;
@@ -60,44 +56,26 @@ export function initHero() {
     return clamp(-hero.getBoundingClientRect().top / track);
   }
 
+  const move = (els, x) => {
+    const value = `translate3d(${x.toFixed(2)}px, 0, 0)`;
+    for (const el of [els].flat()) el.style.transform = value;
+  };
+
   function paint(p) {
     const depth = smooth(SCENES.depth, p);
     const opening = smooth(SCENES.opening, p);
-    const framing = smooth(SCENES.framing, p);
-    const work = smooth(SCENES.work, p);
 
+    // Depth: the front halves part slightly while the planes behind them slide
+    // further, so more of the face appears (offsets up to 24 px).
     const part = (MOTION.maxPlaneOffsetPx / 2) * depth;
-    const travel = width * (OPEN_TRAVEL * opening + FRAME_TRAVEL * framing);
+    const recess = MOTION.maxPlaneOffsetPx * depth;
 
-    for (const plate of plates) {
-      const dir = plate.dataset.plate === 'j' ? -1 : 1;
-      plate.style.transform = `translate3d(${dir * (part + travel)}px, 0, 0)`;
-    }
-
-    // Each shadow plane sets back by its depth: up to 12 / 24 px with the intro offset.
-    for (const shade of shades) {
-      const dir = shade.dataset.shade === 'j' ? -1 : 1;
-      const extra = (MOTION.maxPlaneOffsetPx / 4) * Number(shade.dataset.depth) * depth;
-      shade.style.transform = `translate3d(${dir * (part + travel) + extra}px, ${extra * 0.4}px, 0)`;
-    }
-
-    const shift = MOTION.maxPortraitShiftPx * depth + width * PORTRAIT_OPEN_SHIFT * opening;
-    portrait.style.transform = `translate3d(${shift}px, 0, 0)`;
-    portrait.style.opacity = String(1 - work);
-
-    // The rectangular window appears by mask, anchored to the same area.
-    const [from, to] = MOTION.windowScale;
-    win.style.opacity = framing > 0 ? '1' : '0';
-    win.style.transform = `scale(${from + (to - from) * (0.6 * framing + 0.4 * work)})`;
-    winMask.style.clipPath = `inset(${50 * (1 - framing)}%)`;
-    winImage.style.opacity = String(work);
-    winLabel.style.opacity = String(work);
-
-    const live = work > 0.6;
-    if (live !== win.classList.contains('is-live')) {
-      win.classList.toggle('is-live', live);
-      win.inert = !live;
-    }
+    move(layers.frontJ, -part + openJ * unit * opening);
+    move(layers.frontA, part + OPEN.a * unit * opening);
+    move(layers.innerJ, -recess + openJ * unit * opening * INNER_RATIO);
+    move(layers.innerA, recess + OPEN.a * unit * opening * INNER_RATIO);
+    move(portrait, MOTION.maxPortraitShiftPx * depth + PORTRAIT_DRIFT * unit * opening);
+    scene.style.setProperty('--seam', Math.min(1, depth * 3).toFixed(3));
   }
 
   function endIntro() {
@@ -120,19 +98,22 @@ export function initHero() {
     requestAnimationFrame(frame);
   }
 
+  // Furthest the J can travel before its opening reaches the signature.
+  function measure() {
+    unit = scene.clientWidth / SCENE.width;
+    const markRight = mark.getBoundingClientRect().right - scene.getBoundingClientRect().left;
+    const limitPx = markRight + MARK_CLEARANCE_PX + MOTION.maxPlaneOffsetPx / 2 - J_OPENING_LEFT * unit;
+    openJ = Math.max(OPEN.j, limitPx / unit);
+  }
+
   function onResize() {
-    alignSurface();
+    measure();
     if (enabled) frame();
   }
 
   function reset() {
-    for (const el of [...plates, ...shades, portrait, win, winMask, winImage, winLabel]) {
-      el.style.removeProperty('transform');
-      el.style.removeProperty('opacity');
-      el.style.removeProperty('clip-path');
-    }
-    win.classList.remove('is-live');
-    win.inert = true;
+    for (const el of [...Object.values(layers).flat(), portrait]) el.style.removeProperty('transform');
+    scene.style.removeProperty('--seam');
   }
 
   function update() {
@@ -140,7 +121,7 @@ export function initHero() {
     if (next === enabled) return;
     enabled = next;
     if (enabled) {
-      frame();
+      onResize();
     } else {
       reset();
     }
@@ -155,13 +136,8 @@ export function initHero() {
   window.setTimeout(endIntro, MOTION.introSeconds * 1000 + 100);
   addEventListener('scroll', onScroll, { passive: true });
   addEventListener('resize', onResize);
-  desktop.addEventListener('change', () => {
-    update();
-    onResize();
-  });
+  desktop.addEventListener('change', update);
   reduce.addEventListener('change', update);
 
-  alignSurface();
   update();
-  if (document.fonts) document.fonts.ready.then(alignSurface);
 }

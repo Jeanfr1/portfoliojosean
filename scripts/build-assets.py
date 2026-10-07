@@ -8,6 +8,7 @@ Usage: python3 scripts/build-assets.py
 """
 from pathlib import Path
 
+import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -90,9 +91,26 @@ def projects() -> None:
         hero = src if hero_h is None else src.crop((0, 0, src.width, hero_h))
         save_webp(fit_width(hero, 1024), f"{slug}-hero.webp", 82)
         save_webp(fit_width(hero, 480), f"{slug}-thumb.webp", 80)
-    # The hero window holds the STA concept at the art's 84% frame (~1.08:1).
-    sta = Image.open(KIT / "05-projetos/01-automotives-sta.png").convert("RGB")
-    save_webp(sta.crop((0, 0, 1024, 945)), "automotives-sta-window.webp", 84)
+
+
+def grain() -> None:
+    """Uncoated-paper grain: light and dark specks on transparency, tileable,
+    laid over the satin planes (the art shows a fine tactile texture)."""
+    rng = np.random.default_rng(7)
+    size = 256
+    noise = rng.normal(0, 1, (size, size))
+    # Wrap-around Gaussian blur (np.roll) keeps the tile seamless while
+    # softening single pixels into fibres.
+    k = np.exp(-0.5 * (np.arange(-2, 3) / 0.55) ** 2)
+    k /= k.sum()
+    soft = noise
+    for axis in (0, 1):
+        soft = sum(w * np.roll(soft, o, axis=axis) for o, w in zip(range(-2, 3), k))
+    v = (soft - soft.mean()) / soft.std()  # zero mean: no overall lightening
+    alpha = np.clip(np.abs(v) * 16, 0, 46).astype("uint8")
+    rgb = np.where(v[..., None] > 0, 255, 0).astype("uint8").repeat(3, axis=2)
+    Image.fromarray(np.dstack([rgb, alpha]), "RGBA").save(OUT / "grain.png", optimize=True)
+    print(f"  {'grain.png':<34} {size}x{size}  {(OUT / 'grain.png').stat().st_size // 1024} KB")
 
 
 if __name__ == "__main__":
@@ -101,3 +119,4 @@ if __name__ == "__main__":
     background()
     marks()
     projects()
+    grain()

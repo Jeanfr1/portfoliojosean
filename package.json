@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Josean Araujo / Metal Editorial portfolio",
   "scripts": {
-    "pages": "node scripts/build-pages.mjs",
+    "pages": "node scripts/build-pages.mjs && node scripts/build-hero.mjs",
     "assets": "python3 scripts/build-assets.py",
     "dev": "npm run pages && vite",
     "build": "npm run pages && vite build",

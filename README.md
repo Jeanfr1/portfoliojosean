@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src=".github/assets/banner.png" alt="Josean Araujo: Clear ideas. Memorable experiences. The monumental letters J and A cut from a satin silver plate reveal Josean's portrait." width="100%" />
+<img src=".github/assets/banner.jpg" alt="Josean Araujo: Clear ideas. Memorable experiences. The monumental letters J and A cut from a satin silver plate reveal Josean's portrait." width="100%" />
 
-<h3>An editorial portfolio where the JA monogram becomes an author's window: the letters open on scroll and hand their frame to the first project.</h3>
+<h3>An editorial portfolio where the JA monogram becomes an author's window: layered satin silver letters that open on scroll to reveal the author.</h3>
 
 <p>
   <a href="#hero-animation"><strong>🎬 How the hero works</strong></a>
@@ -28,9 +28,9 @@
 
 **Josean Araujo** connects visual intent, development and the real use of technology. This portfolio is built from the **Metal Editorial** kit (`josean-portfolio-metal-editorial/`): natural photography, author typography and precise motion, in graphite, satin silver and light grey.
 
-The first screen is a signature. Monumental **J** and **A** letters, cut from a satin silver plate, reveal fragments of a single portrait. As you scroll, the plates part, the opening grows, the cut-outs leave through the edges and a rectangular window takes over the same frame to show the first project. After that the motion ends, and the rest of the page is about reading, choosing a case and starting a conversation.
+The first screen is a signature. Monumental **J** and **A** letters, cut in layers of satin silver, reveal fragments of a single portrait. As you scroll, the planes set back in depth, then the J and the A slide apart until the author stands between them. That is the whole effect: the hero belongs to the person, and the work follows in the next section.
 
-- **One signature, one window, the work**: a pinned 140 vh sequence on desktop, written scene by scene in the kit
+- **One signature, one opening**: a pinned 140 vh sequence on desktop, built from the approved art plane by plane
 - **Content first**: every word, link and case is HTML, readable without JavaScript and without the animation
 - **Honest cases**: six concept studies, each labelled *Concept study*, with context, proposal, decisions, screens and motion; no invented results, clients or metrics
 - **One contact**: LinkedIn, the only channel supplied
@@ -42,29 +42,30 @@ The first screen is a signature. Monumental **J** and **A** letters, cut from a 
 ## 🎬 The hero animation
 
 <div align="center">
-  <img src=".github/assets/hero-scroll.gif" alt="Scrolling through the hero: the J and A plates part, open on the portrait, leave through the edges and a window shows the Automotives STA concept" width="100%" />
+  <img src=".github/assets/hero-scroll.gif" alt="Scrolling through the hero: the layered J and A planes set back, then slide apart to reveal Josean's portrait between them" width="100%" />
   <sub>Scroll-scrubbed · captured at 1440 × 900 from the production build</sub>
 </div>
 
 <br />
 
-The entrance takes 1.4 s (`02-roteiro-de-movimento.md`): the portrait fades in under the openings (0–0.4 s), the graphite planes set back 6–12 px (0.2–0.9 s) and one light change runs along the edge of the J and stops (0.7–1.4 s). Scrolling during the entrance takes over immediately. After that the hero follows the kit's scroll timeline (`07-integracao/scroll-timeline.json`):
+The entrance takes 1.4 s (`02-roteiro-de-movimento.md`): the portrait fades in under the openings (0–0.4 s), the graphite planes set back 6–12 px (0.2–0.9 s) and one light change runs along the edge of the J and stops (0.7–1.4 s). Scrolling during the entrance takes over immediately. After that the hero follows the storyboard's first three scenes (`01-direcao/storyboard-janela-de-autor.png`). It ends on the author: no project enters the hero, the work section comes right after.
 
-| Scroll   | Scene         | What happens                                                                              |
-| :------- | :------------ | :---------------------------------------------------------------------------------------- |
-| 0–20%    | **Signature** | JA cut-outs and portrait at rest; name, proposal and actions readable                     |
-| 20–42%   | **Depth**     | The planes part up to 24 px; the portrait moves 18 px at most                              |
-| 42–62%   | **Opening**   | The counterform grows and reveals the author; the portrait keeps its geometry             |
-| 62–82%   | **Framing**   | Cut-outs leave through the edges; a rectangular window grows over the art, revealed by mask |
-| 82–100%  | **Work**      | The portrait fades; Automotives STA takes the same window, scaling from 0.78 to 1          |
+| Scroll   | Scene         | What happens                                                                                  |
+| :------- | :------------ | :-------------------------------------------------------------------------------------------- |
+| 0–12%    | **Signature** | JA planes and portrait at rest, as in the approved art; name, proposal and actions readable   |
+| 12–36%   | **Depth**     | The front plate parts along a seam; the planes behind set back up to 24 px; the portrait moves 18 px at most |
+| 36–88%   | **Opening**   | The J and the A slide apart with parallax between layers and reveal the portrait              |
+| 88–100%  | **Author**    | Head and shoulders framed by what remains of the J and the A                                  |
 
 **Under the hood**
 
-- 🧱 **Layers, not video.** Silver background → portrait → two graphite shadow planes → light plates with openings → edge light → HTML text, exactly the order in `04-producao.md`. The plates are the kit's production SVGs (`04-camadas/placa-*.svg`, viewBox 1040 × 960) used as CSS masks.
-- 👤 **One portrait, every scene.** The same transparent PNG is contained in the art and never deformed. It is offset so the J opening always shows one eye: the openings never cover both.
-- 🪨 **One continuous sheet.** At rest the plates carry the same `fundo-prata` texture as the page, aligned to the stage in JS, so the letters read as cuts in a single plate, not as a box on top of it.
+- ✍️ **Traced from the approved art.** Every plane of `02-hero/hero-desktop.png` was traced on gridded 2× crops into `src/data/hero-scene.js`: the front plate with its two openings, six silver planes that draw the strokes, six graphite strips that give the letters their thickness, each with the tone sampled from the art.
+- 🧱 **Layers, not video.** Dark recess → portrait → graphite and silver planes (inline SVG, grain, lit edges, short shadows) → front plate halves (masked) → edge light → HTML text, the order in `04-producao.md`. `scripts/build-hero.mjs` writes the scene into `index.html`, so the resting composition shows without JavaScript.
+- 👤 **One portrait, every scene.** The kit's transparent portrait is placed so the left eye sits in the J opening and the ear in the slit, as in the art, and is never resized or deformed.
+- 🪨 **One satin sheet.** The page and the front plate share the same tone, light and grain, so at rest the letters read as cuts in a single plate. The plate splits along a seam inside the solid strip between the J and the A, invisible until it opens.
+- 🔏 **The signature stays put.** The J's travel is measured against the JA mark in the header on every resize, so its opening never passes under the logo.
 - 🎚️ **Scroll-scrubbed, never forced.** Native scroll with a sticky stage: no wheel hijacking, no smoothing layer, no locked navigation. Effects pause when the hero leaves the screen.
-- 🐢 **Graceful by default.** Below 1024 px there is no pin and no camera: art above, text below, and the project window enters right after the introduction. With `prefers-reduced-motion` the composition is static.
+- 🐢 **Graceful by default.** Below 1024 px there is no pin and no camera: art above, text below. With `prefers-reduced-motion` the composition is static.
 
 <br />
 
@@ -113,7 +114,7 @@ Each concept has its own static page at `/work/<slug>/`, in the order the kit as
 ## 📱 Mobile first, motion optional
 
 <div align="center">
-  <img src=".github/assets/mobile-screens.jpg" alt="Mobile screenshots: hero art above the name, the project window after the introduction, the work list and the Isola case" width="100%" />
+  <img src=".github/assets/mobile-screens.jpg" alt="Mobile screenshots: hero art above the name, the introduction and actions, the work list and the Isola case" width="100%" />
 </div>
 
 <br />
@@ -127,10 +128,10 @@ Each concept has its own static page at `/work/<slug>/`, in the order the kit as
 
 ## ✨ Highlights
 
-- **🪟 Author window**: the scroll sequence is computed from the kit's scene ranges with the same smoothstep as the kit's motion study
+- **🪟 Author window**: layered planes traced from the approved art, opened by scroll with the same smoothstep as the kit's motion study
 - **🧾 Works without JavaScript**: name, proposal, calls to action and all six cases are plain HTML; JS only adds the motion
-- **🎯 Focus you can see**: a 2 px graphite ring (white on dark), a skip link, and a hero window that stays `inert` until it is on screen
-- **🖼️ Image pipeline**: the kit's PNGs stay untouched; light WebP derivatives (hero crops, thumbnails, portrait, monogram, favicons) come from `npm run assets`
+- **🎯 Focus you can see**: a 2 px graphite ring (white on dark) and a skip link
+- **🖼️ Image pipeline**: the kit's PNGs stay untouched; light WebP derivatives (hero crops, thumbnails, portrait, monogram, favicons) and the paper grain tile come from `npm run assets`
 - **🔤 Type that holds up**: Bodoni Moda at a fixed optical size, so hairlines survive on small screens; Inter for reading and interface
 - **🧰 One source of truth**: `src/data/projects.js` feeds the home cards and the six case pages through `npm run pages`
 
@@ -193,7 +194,7 @@ npm run build
 # Preview the production build
 npm run preview
 
-# Regenerate the home work section and the six case pages from src/data/projects.js
+# Regenerate the hero scene, the home work section and the six case pages
 npm run pages
 
 # Regenerate the WebP derivatives from the kit (needs Python 3 + Pillow)
@@ -206,23 +207,25 @@ npm run assets
 
 ```
 portfoliojosean/
-├── index.html                      # Hero → work → experience → process → about → contact
+├── index.html                      # Hero → work → experience → process → about → contact (hero scene and work cards generated)
 ├── work/<slug>/index.html          # Six case pages (generated, do not edit by hand)
 ├── src/
 │   ├── data/
-│   │   ├── projects.js             # The six concept studies: copy, crops, tones
-│   │   └── motion.js               # Scene ranges mirrored from the kit's scroll timeline
+│   │   ├── hero-scene.js           # Planes traced from the approved hero art: paths, order, tones
+│   │   ├── motion.js               # Scene ranges and offsets of the hero
+│   │   └── projects.js             # The six concept studies: copy, crops, tones
 │   ├── js/
 │   │   ├── main.js                 # Entry: fonts, styles, modules
-│   │   ├── hero.js                 # Author window: plates, depth, opening, framing, handoff
-│   │   ├── reveal.js               # One-time entrances (experience, mobile window)
+│   │   ├── hero.js                 # Author window: depth, opening, logo-safe travel
+│   │   ├── reveal.js               # One-time entrances (experience)
 │   │   └── process.js              # The stroke that follows the step in focus
 │   └── styles/main.css             # Tokens, grid, hero layers, sections, case pages
 ├── public/
-│   ├── img/                        # WebP derivatives + the kit's SVG planes
+│   ├── img/                        # WebP derivatives, grain tile, hero/ plate masks (generated)
 │   ├── og.jpg                      # Open Graph image (a capture of the real hero)
 │   └── favicon-32.png, apple-touch-icon.png
 ├── scripts/
+│   ├── build-hero.mjs              # Hero data → scene markup + plate masks
 │   ├── build-pages.mjs             # Data → work section + case pages
 │   └── build-assets.py             # Kit PNGs → web derivatives
 └── josean-portfolio-metal-editorial/  # The kit: direction, identity, layers, scripts, study (untouched)
